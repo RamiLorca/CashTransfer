@@ -3,12 +3,10 @@ package com.techelevator.tenmo.dao;
 import com.techelevator.tenmo.model.Account;
 import com.techelevator.tenmo.model.GetAllAccountsDTO;
 import org.springframework.dao.DataAccessException;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -35,7 +33,6 @@ public class JdbcAccountDao implements AccountDao {
         catch (DataAccessException e) {
             System.out.println("Unable to access database.");
         }
-
         return null;
     }
 
@@ -59,7 +56,6 @@ public class JdbcAccountDao implements AccountDao {
         catch (DataAccessException e) {
             System.out.println("Unable to access database.");
         }
-
         return updatedSenderBalance;
     }
 
@@ -98,7 +94,6 @@ public class JdbcAccountDao implements AccountDao {
         catch (DataAccessException e) {
             System.out.println("Unable to connect to database.");
         }
-
         return new BigDecimal("-1.00");
     }
 
@@ -113,7 +108,6 @@ public class JdbcAccountDao implements AccountDao {
         catch (DataAccessException e) {
             System.out.println("Unable to connect to database.");
         }
-
         return null;
     }
 
@@ -145,7 +139,6 @@ public class JdbcAccountDao implements AccountDao {
         catch (DataAccessException e) {
             System.out.println("Could not connect to database.");
         }
-
         return accountsList;
     }
 
@@ -157,7 +150,6 @@ public class JdbcAccountDao implements AccountDao {
         if (username.equals(nameToCompare)) {
             return true;
         }
-
         return false;
     }
 
@@ -175,6 +167,7 @@ public class JdbcAccountDao implements AccountDao {
         GetAllAccountsDTO dto = new GetAllAccountsDTO();
         dto.setUsername(rs.getString("username"));
         dto.setAccountId(rs.getInt("account_id"));
+
         return dto;
     }
 }

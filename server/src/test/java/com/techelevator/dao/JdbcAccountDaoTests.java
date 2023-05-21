@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class JdbcAccountDaoTests extends BaseDaoTests {
+
     private static final Account TEST_ERIC_CAMERON_1 = new Account(2001, "eric_cameron_1", new BigDecimal("1000.00"));
     private JdbcAccountDao sut;
 
@@ -52,9 +53,6 @@ public class JdbcAccountDaoTests extends BaseDaoTests {
         Assert.assertEquals("eric_cameron_1", returnedUsername);
     }
 
-    // This test will fail due to an issue that appears to throw an exception after the UPDATE sql query is run and
-    // the results saved to the database. We will need to track down what's triggering the data access exception, but
-    // at the moment the program functions as expected even with the data access exception.
     @Test
     public void updateAccountBalanceTest() {
         boolean updatedBalance = sut.updateAccountBalance(2001, new BigDecimal("5000.00"));
@@ -73,4 +71,5 @@ public class JdbcAccountDaoTests extends BaseDaoTests {
         Assert.assertEquals(expected.getUsername(), actual.getUsername());
         Assert.assertEquals(expected.getBalance(), actual.getBalance());
     }
+
 }

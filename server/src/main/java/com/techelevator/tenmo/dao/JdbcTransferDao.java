@@ -6,7 +6,6 @@ import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -22,9 +21,6 @@ public class JdbcTransferDao implements TransferDao{
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    // We were working on creating a second method that will request funds rather than initiate a send, however
-    // we have realized that this initiateTransfer could be used in both situations. Therefore, we are keeping it
-    // to a single method to handle initiated sends and requested transfers.
     @Override
     public boolean initiateTransfer(int senderId, int receiverId, BigDecimal amount) {
         String sql = "INSERT INTO transfer (transfer_status, sender_id, " +
@@ -107,7 +103,6 @@ public class JdbcTransferDao implements TransferDao{
         catch (DataAccessException e) {
             System.out.println("Cannot connect to database.");
         }
-
         return null;
     }
 
@@ -126,26 +121,21 @@ public class JdbcTransferDao implements TransferDao{
         catch (DataAccessException e) {
             System.out.println("Could not connect to database.");
         }
-
         return transferList;
     }
 
     public boolean isValid(int senderId, int receiverId, BigDecimal amount) throws DataAccessException {
-
         if(senderId == receiverId) {
             return false;
         }
-
         if(amount.compareTo(new BigDecimal("0")) <= 0) {
             return false;
         }
-
         String sql = "SELECT balance FROM account WHERE account_id = ?";
         BigDecimal senderBalance = jdbcTemplate.queryForObject(sql, BigDecimal.class, senderId);
         if(amount.compareTo(senderBalance) >= 0) {
             return false;
         }
-
         return true;
     }
 
@@ -157,6 +147,7 @@ public class JdbcTransferDao implements TransferDao{
         transfer.setTransfer_id(result.getInt("transfer_id"));
         transfer.setAmount(result.getBigDecimal("amount"));
         transfer.setTime_sent((result.getTimestamp("time_sent")).toLocalDateTime());
+
         return transfer;
     }
 }

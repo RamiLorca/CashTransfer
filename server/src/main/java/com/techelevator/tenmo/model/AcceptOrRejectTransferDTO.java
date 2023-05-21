@@ -29,4 +29,5 @@ public class AcceptOrRejectTransferDTO {
     public void setAccepted(boolean isAccepted) {
         this.isAccepted = isAccepted;
     }
+
 }

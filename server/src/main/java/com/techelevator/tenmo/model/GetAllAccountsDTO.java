@@ -28,4 +28,5 @@ public class GetAllAccountsDTO {
     public void setAccountId(int accountId) {
         this.accountId = accountId;
     }
+
 }

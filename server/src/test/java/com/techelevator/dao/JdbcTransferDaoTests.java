@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class JdbcTransferDaoTests extends BaseDaoTests {
+
     private static final Transfer TEST_TRANSFER_1 = new Transfer(3001, "Pending", 2001, 2002,
                                                     new BigDecimal("150.00"), LocalDateTime.of(2023, 4,
                                          27, 12, 18, 41));
@@ -32,9 +33,6 @@ public class JdbcTransferDaoTests extends BaseDaoTests {
         Assert.assertEquals(3002, transfer.getTransfer_id());
     }
 
-    // This test will fail due to an issue that appears to throw an exception after the UPDATE sql query is run and
-    // the results saved to the database. We will need to track down what's triggering the data access exception, but
-    // at the moment the program functions as expected even with the data access exception.
     @Test
     public void acceptTransferTest() {
         boolean isAccepted = sut.acceptTransfer(3001);
@@ -43,9 +41,6 @@ public class JdbcTransferDaoTests extends BaseDaoTests {
         Assert.assertEquals("Accepted", transfer.getTransfer_status());
     }
 
-    // This test will fail due to an issue that appears to throw an exception after the UPDATE sql query is run and
-    // the results saved to the database. We will need to track down what's triggering the data access exception, but
-    // at the moment the program functions as expected even with the data access exception.
     @Test
     public void cancelTransferTest() {
         boolean isCancelled = sut.cancelTransfer(3001);
@@ -88,4 +83,5 @@ public class JdbcTransferDaoTests extends BaseDaoTests {
         Assert.assertEquals(expected.getAmount(), actual.getAmount());
         Assert.assertEquals(expected.getTime_sent(), actual.getTime_sent());
     }
+
 }

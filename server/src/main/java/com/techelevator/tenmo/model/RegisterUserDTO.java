@@ -24,4 +24,5 @@ public class RegisterUserDTO {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }
