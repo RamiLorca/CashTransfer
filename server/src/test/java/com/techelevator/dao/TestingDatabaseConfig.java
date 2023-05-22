@@ -36,7 +36,7 @@ public class TestingDatabaseConfig {
 
     private JdbcTemplate adminJdbcTemplate;
 
-    /* Creates the temporary database to be used for the tests. */
+    /* This method creates the temporary database to be used for the tests. */
     @PostConstruct
     public void setup() {
         if (System.getenv("DB_HOST") == null) {
@@ -72,7 +72,7 @@ public class TestingDatabaseConfig {
         return ds;
     }
 
-    /* Runs after all the tests and removes the temporary database. */
+    /* This method runs after all the tests and removes the temporary database. */
     @PreDestroy
     public void cleanup() throws SQLException {
         if (adminDataSource != null) {
@@ -81,5 +81,4 @@ public class TestingDatabaseConfig {
             adminDataSource.destroy();
         }
     }
-
 }

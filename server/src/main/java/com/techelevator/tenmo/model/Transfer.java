@@ -1,67 +1,73 @@
 package com.techelevator.tenmo.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Transfer {
-    private int transfer_id;
-    private String transfer_status;
-    private int sender_id;
-    private int receiver_id;
+    @JsonProperty("transfer_id")
+    private int transferId;
+    @JsonProperty("transfer_status")
+    private String transferStatus;
+    @JsonProperty("sender_id")
+    private int senderId;
+    @JsonProperty("receiver_id")
+    private int receiverId;
     private BigDecimal amount;
-    private LocalDateTime time_sent;
+    @JsonProperty("time_sent")
+    private LocalDateTime timeSent;
 
     public Transfer() {
     }
 
-    public Transfer(int transfer_id, String transfer_status, int sender_id, int receiver_id, BigDecimal amount, LocalDateTime time_sent) {
-        this.transfer_id = transfer_id;
-        this.transfer_status = transfer_status;
-        this.sender_id = sender_id;
-        this.receiver_id = receiver_id;
+    public Transfer(int transferId, String transferStatus, int senderId, int receiverId, BigDecimal amount, LocalDateTime timeSent) {
+        this.transferId = transferId;
+        this.transferStatus = transferStatus;
+        this.senderId = senderId;
+        this.receiverId = receiverId;
         this.amount = amount;
-        this.time_sent = time_sent;
+        this.timeSent = timeSent;
     }
 
-    public Transfer(String transfer_status, int sender_id, int receiver_id, BigDecimal amount, LocalDateTime time_sent) {
-        this.transfer_status = transfer_status;
-        this.sender_id = sender_id;
-        this.receiver_id = receiver_id;
+    public Transfer(String transferStatus, int senderId, int receiverId, BigDecimal amount, LocalDateTime timeSent) {
+        this.transferStatus = transferStatus;
+        this.senderId = senderId;
+        this.receiverId = receiverId;
         this.amount = amount;
-        this.time_sent = time_sent;
+        this.timeSent = timeSent;
     }
 
-    public int getTransfer_id() {
-        return transfer_id;
+    public int getTransferId() {
+        return transferId;
     }
 
-    public void setTransfer_id(int transfer_id) {
-        this.transfer_id = transfer_id;
+    public void setTransferId(int transferId) {
+        this.transferId = transferId;
     }
 
-    public String getTransfer_status() {
-        return transfer_status;
+    public String getTransferStatus() {
+        return transferStatus;
     }
 
-    public void setTransfer_status(String transfer_status) {
-        this.transfer_status = transfer_status;
+    public void setTransferStatus(String transferStatus) {
+        this.transferStatus = transferStatus;
     }
 
-    public int getSender_id() {
-        return sender_id;
+    public int getSenderId() {
+        return senderId;
     }
 
-    public void setSender_id(int sender_id) {
-        this.sender_id = sender_id;
+    public void setSenderId(int senderId) {
+        this.senderId = senderId;
     }
 
-    public int getReceiver_id() {
-        return receiver_id;
+    public int getReceiverId() {
+        return receiverId;
     }
 
-    public void setReceiver_id(int receiver_id) {
-        this.receiver_id = receiver_id;
+    public void setReceiverId(int receiverId) {
+        this.receiverId = receiverId;
     }
 
     public BigDecimal getAmount() {
@@ -72,24 +78,23 @@ public class Transfer {
         this.amount = amount;
     }
 
-    public LocalDateTime getTime_sent() {
-        return time_sent;
+    public LocalDateTime getTimeSent() {
+        return timeSent;
     }
 
-    public void setTime_sent(LocalDateTime time_sent) {
-        this.time_sent = time_sent;
+    public void setTimeSent(LocalDateTime timeSent) {
+        this.timeSent = timeSent;
     }
 
     @Override
     public String toString() {
         return "Transfer{" +
-                "transfer_id=" + transfer_id +
-                ", transfer_status='" + transfer_status + '\'' +
-                ", sender_id=" + sender_id +
-                ", receiver_id=" + receiver_id +
+                "transfer_id=" + transferId +
+                ", transfer_status='" + transferStatus + '\'' +
+                ", sender_id=" + senderId +
+                ", receiver_id=" + receiverId +
                 ", amount=" + amount +
-                ", time_sent=" + time_sent +
+                ", time_sent=" + timeSent +
                 '}';
     }
-
 }

@@ -1,7 +1,6 @@
 package com.techelevator.dao;
 
 import com.techelevator.tenmo.dao.JdbcAccountDao;
-import com.techelevator.tenmo.dao.JdbcUserDao;
 import com.techelevator.tenmo.model.Account;
 import com.techelevator.tenmo.model.GetAllAccountsDTO;
 import org.junit.Assert;
@@ -13,7 +12,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class JdbcAccountDaoTests extends BaseDaoTests {
-
     private static final Account TEST_ERIC_CAMERON_1 = new Account(2001, "eric_cameron_1", new BigDecimal("1000.00"));
     private JdbcAccountDao sut;
 
@@ -53,6 +51,9 @@ public class JdbcAccountDaoTests extends BaseDaoTests {
         Assert.assertEquals("eric_cameron_1", returnedUsername);
     }
 
+    // This test will fail due to an issue that appears to throw an exception after the UPDATE sql query is run and
+    // the results saved to the database. We will need to track down what's triggering the data access exception, but
+    // at the moment the program functions as expected even with the data access exception.
     @Test
     public void updateAccountBalanceTest() {
         boolean updatedBalance = sut.updateAccountBalance(2001, new BigDecimal("5000.00"));
@@ -67,9 +68,8 @@ public class JdbcAccountDaoTests extends BaseDaoTests {
     }
 
     private void assertAccountsMatch(Account expected, Account actual) {
-        Assert.assertEquals(expected.getAccount_id(), actual.getAccount_id());
+        Assert.assertEquals(expected.getAccountId(), actual.getAccountId());
         Assert.assertEquals(expected.getUsername(), actual.getUsername());
         Assert.assertEquals(expected.getBalance(), actual.getBalance());
     }
-
 }

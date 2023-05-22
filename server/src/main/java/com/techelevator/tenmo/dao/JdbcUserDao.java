@@ -58,7 +58,7 @@ public class JdbcUserDao implements UserDao {
     @Override
     public boolean create(String username, String password) {
 
-        // Create user
+        // create user
         String sql = "INSERT INTO tenmo_user (username, password_hash) VALUES (?, ?) RETURNING user_id";
         String password_hash = new BCryptPasswordEncoder().encode(password);
         Integer newUserId;
@@ -68,7 +68,7 @@ public class JdbcUserDao implements UserDao {
             return false;
         }
 
-        // Create the account record with initial balance
+        // TODO: Create the account record with initial balance
         sql = "INSERT INTO account (username, balance) VALUES (?, ?) RETURNING account_id";
         Integer newAccountId;
         try {
@@ -77,6 +77,7 @@ public class JdbcUserDao implements UserDao {
         catch (DataAccessException e) {
             return false;
         }
+
         return true;
     }
 
@@ -87,7 +88,6 @@ public class JdbcUserDao implements UserDao {
         user.setPassword(rs.getString("password_hash"));
         user.setActivated(true);
         user.setAuthorities("USER");
-
         return user;
     }
 }

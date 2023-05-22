@@ -18,7 +18,6 @@ import java.util.List;
 @PreAuthorize("isAuthenticated()")
 @RestController
 public class AccountController {
-
     private AccountDao accountDao;
 
     public AccountController (AccountDao accountDao) {

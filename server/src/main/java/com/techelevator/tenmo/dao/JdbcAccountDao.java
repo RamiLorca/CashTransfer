@@ -33,6 +33,7 @@ public class JdbcAccountDao implements AccountDao {
         catch (DataAccessException e) {
             System.out.println("Unable to access database.");
         }
+
         return null;
     }
 
@@ -56,6 +57,7 @@ public class JdbcAccountDao implements AccountDao {
         catch (DataAccessException e) {
             System.out.println("Unable to access database.");
         }
+
         return updatedSenderBalance;
     }
 
@@ -94,6 +96,7 @@ public class JdbcAccountDao implements AccountDao {
         catch (DataAccessException e) {
             System.out.println("Unable to connect to database.");
         }
+
         return new BigDecimal("-1.00");
     }
 
@@ -108,6 +111,7 @@ public class JdbcAccountDao implements AccountDao {
         catch (DataAccessException e) {
             System.out.println("Unable to connect to database.");
         }
+
         return null;
     }
 
@@ -139,6 +143,7 @@ public class JdbcAccountDao implements AccountDao {
         catch (DataAccessException e) {
             System.out.println("Could not connect to database.");
         }
+
         return accountsList;
     }
 
@@ -150,13 +155,14 @@ public class JdbcAccountDao implements AccountDao {
         if (username.equals(nameToCompare)) {
             return true;
         }
+
         return false;
     }
 
 
     private Account mapRowToAccount(SqlRowSet rs) {
         Account account = new Account();
-        account.setAccount_id(rs.getInt("account_id"));
+        account.setAccountId(rs.getInt("account_id"));
         account.setUsername(rs.getString("username"));
         account.setBalance(rs.getBigDecimal("balance"));
 
@@ -167,7 +173,6 @@ public class JdbcAccountDao implements AccountDao {
         GetAllAccountsDTO dto = new GetAllAccountsDTO();
         dto.setUsername(rs.getString("username"));
         dto.setAccountId(rs.getInt("account_id"));
-
         return dto;
     }
 }

@@ -1,7 +1,8 @@
 package com.techelevator.tenmo.model;
 
- // DTO for storing a user's credentials.
-
+/**
+ * DTO for storing a user's credentials.
+ */
 public class LoginDTO {
 
    private String username;
@@ -30,5 +31,4 @@ public class LoginDTO {
               ", password='" + password + '\'' +
               '}';
    }
-
 }

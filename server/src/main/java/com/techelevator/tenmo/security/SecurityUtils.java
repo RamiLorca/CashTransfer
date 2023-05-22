@@ -16,6 +16,11 @@ public class SecurityUtils {
     private SecurityUtils() {
     }
 
+    /**
+     * Get the login of the current user.
+     *
+     * @return the login of the current user.
+     */
     public static Optional<String> getCurrentUsername() {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -36,5 +41,4 @@ public class SecurityUtils {
 
         return Optional.ofNullable(username);
     }
-
 }

@@ -42,5 +42,4 @@ public class JdbcUserDaoTests extends BaseDaoTests{
         int actualSize = actual.size();
         Assert.assertEquals(3, actualSize);
     }
-
 }

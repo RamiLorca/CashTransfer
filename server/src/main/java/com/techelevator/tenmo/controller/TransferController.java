@@ -27,8 +27,8 @@ public class TransferController {
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/transfer", method = RequestMethod.POST)
     public void initiateTransfer(@RequestBody Transfer transfer) {
-        int senderId = transfer.getSender_id();
-        int receiverId = transfer.getReceiver_id();
+        int senderId = transfer.getSenderId();
+        int receiverId = transfer.getReceiverId();
         BigDecimal amount = transfer.getAmount();
 
         if(!transferDao.initiateTransfer(senderId, receiverId, amount)){
@@ -77,16 +77,16 @@ public class TransferController {
         Transfer transfer = transferDao.getTransferDetailsById(transferDTO.getTransferId());
 
         if (transferDTO.isAccepted()) {
-            BigDecimal newSenderBalance = accountDao.subtractFromBalance(transfer.getSender_id(), transfer.getAmount());
-            BigDecimal newReceiverBalance = accountDao.addToBalance(transfer.getReceiver_id(), transfer.getAmount());
+            BigDecimal newSenderBalance = accountDao.subtractFromBalance(transfer.getSenderId(), transfer.getAmount());
+            BigDecimal newReceiverBalance = accountDao.addToBalance(transfer.getReceiverId(), transfer.getAmount());
 
-            accountDao.updateAccountBalance(transfer.getSender_id(), newSenderBalance);
-            accountDao.updateAccountBalance(transfer.getReceiver_id(), newReceiverBalance);
+            accountDao.updateAccountBalance(transfer.getSenderId(), newSenderBalance);
+            accountDao.updateAccountBalance(transfer.getReceiverId(), newReceiverBalance);
 
-            transferDao.acceptTransfer(transfer.getTransfer_id());
+            transferDao.acceptTransfer(transfer.getTransferId());
         }
         else {
-            transferDao.cancelTransfer(transfer.getTransfer_id());
+            transferDao.cancelTransfer(transfer.getTransferId());
         }
     }
 
